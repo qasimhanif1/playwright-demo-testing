@@ -131,3 +131,23 @@ test('should filter todos correctly', async ({ page }) => {
   
   console.log('✅ Filters working correctly');
 });
+// Test 8: Clear completed todos
+test('should clear completed todos', async ({ page }) => {
+  await page.goto('https://demo.playwright.dev/todomvc');
+  
+  // Add two todos
+  await page.fill('.new-todo', 'Task 1');
+  await page.press('.new-todo', 'Enter');
+  await page.fill('.new-todo', 'Task 2');
+  await page.press('.new-todo', 'Enter');
+  
+  // Mark first todo as complete
+  await page.click('.todo-list li:first-child .toggle');
+  
+  // Click "Clear completed" button
+  await page.click('.clear-completed');
+  
+  // Only 1 todo should remain
+  await expect(page.locator('.todo-list li')).toHaveCount(1);
+  console.log('✅ Completed todos cleared');
+});
