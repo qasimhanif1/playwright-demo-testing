@@ -1,0 +1,14 @@
+{
+  "name": "playwright-demo-testing",
+  "version": "1.0.0",
+  "description": "My first Playwright testing project",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.10.1"
+  }
+}
