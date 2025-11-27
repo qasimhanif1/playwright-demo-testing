@@ -151,3 +151,24 @@ test('should clear completed todos', async ({ page }) => {
   await expect(page.locator('.todo-list li')).toHaveCount(1);
   console.log('✅ Completed todos cleared');
 });
+// Test 9: Check todo counter
+test('should show correct item count', async ({ page }) => {
+  await page.goto('https://demo.playwright.dev/todomvc');
+  
+  // Add 3 todos
+  await page.fill('.new-todo', 'Task 1');
+  await page.press('.new-todo', 'Enter');
+  await page.fill('.new-todo', 'Task 2');
+  await page.press('.new-todo', 'Enter');
+  await page.fill('.new-todo', 'Task 3');
+  await page.press('.new-todo', 'Enter');
+  
+  // Should show "3 items left"
+  await expect(page.locator('.todo-count')).toContainText('3 items left');
+  
+  // Mark one as complete
+  await page.click('.todo-list li:first-child .toggle');
+  
+  // Should now show "2 items left"
+  await expect(page.locator('todo-count')).toContainText('2 items left');
+});
